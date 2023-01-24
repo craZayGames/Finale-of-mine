@@ -147,7 +147,7 @@ namespace Finaly_of_mine
                 }
                 else if(levels == Levels.Wait)
                 {
-                    spriBat.DrawString(font,"AD to turn left click to zoom releas to un, release right",vect,Color.Blue);
+                    spriBat.DrawString(font,"AD to turn, left click to enternumber, release right",vect,Color.Blue);
                 }
                 else spriBat.DrawString(font,"hello",vect,Color.Blue);
             }

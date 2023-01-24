@@ -39,6 +39,8 @@ namespace Finaly_of_mine
         }                    
         public void Move(GraphicsDeviceManager graphic,KeyboardState kstate)
         {
+            KeyboardState oldstate = kstate;
+            kstate=Keyboard.GetState();
             if (kstate.IsKeyDown(Keys.A) && (_room == Room.Start || _room == Room.Left || _room == Room.Right || _room == Room.End))
             {
                 if (_room == Room.Start)
