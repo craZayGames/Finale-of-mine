@@ -41,8 +41,9 @@ namespace Finaly_of_mine
         {
             KeyboardState oldstate = kstate;
             kstate=Keyboard.GetState();
-            if (kstate.IsKeyDown(Keys.A) && (_room == Room.Start || _room == Room.Left || _room == Room.Right || _room == Room.End))
-            {
+            if(oldstate != kstate)
+                if (kstate.IsKeyDown(Keys.A) && (_room == Room.Start || _room == Room.Left || _room == Room.Right || _room == Room.End))
+                {
                 if (_room == Room.Start)
                     _room = Room.Left;
                 else if (_room == Room.Left)

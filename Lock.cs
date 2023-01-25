@@ -16,6 +16,7 @@ namespace Finaly_of_mine
         private Rectangle _bounds;
         private int[] _locknum= new int[3];
         private Vector2 _vector=new Vector2(250,50);
+        private string _code;
         public void thelock(bool b)
         {
             if (b == true)
@@ -38,14 +39,58 @@ namespace Finaly_of_mine
         { 
             get { return _locknum; }            
         }
-        public void locked(Player.Room room,MouseState ms,KeyboardState ks)
+        public string Code
+        { get { return _code; } }
+        string codewright,wright;
+        public void locked(Player.Room room,MouseState ms)
         {
             ms = Mouse.GetState();
-            if (room == Player.Room.Start && ms.LeftButton == ButtonState.Pressed)
+            if (room == Player.Room.Start )
             {
-                Bounds = new Rectangle(Bounds.X, Bounds.Y, 200, 200);
-                // dont know what to do but this does not work
-                // merge manion is dumb as hell because some how the hub left and died but didn't                
+                Rectangle[] rect=new Rectangle[10];
+                for(int x=0;x<=100;x+=50)
+                    for(int y=0; y<=350;y+=50)                    
+                        for(int i=0;i<10;i++)
+                        { 
+                            rect[i] = new Rectangle(x,y,50,50);
+                            if (rect[i].Contains(ms.Position) && ms.LeftButton == ButtonState.Pressed)
+                            {
+                                codewright =codewright+ wright;
+                                switch (i)
+                                {
+                                    case 0:
+                                        wright = "1";
+                                        break;
+                                    case 1:
+                                        wright = "2";
+                                        break;
+                                    case 2:
+                                        wright = "3";
+                                        break;
+                                    case 3:
+                                        wright = "4";
+                                        break;
+                                    case 4:
+                                        wright = "5";
+                                        break;
+                                    case 5:
+                                        wright = "6";
+                                        break;
+                                    case 6:
+                                        wright = "7";
+                                        break;
+                                    case 7:
+                                        wright = "8";
+                                        break;
+                                    case 8:
+                                        wright = "9";
+                                        break;
+                                    default:
+                                        wright = "0";
+                                        break;
+                                }
+                            }
+                        }                                
             }
         }              
         public void Draw(SpriteBatch sb,SpriteFont font)
@@ -62,6 +107,9 @@ namespace Finaly_of_mine
             sb.Draw(_texture2,new Rectangle(50,350,50,50),Color.LightGray);
             sb.DrawString(font, "0", new Vector2(68,355), Color.Black);
             sb.Draw(Texture, Bounds, Colour);
+            if (codewright == null)
+                codewright = "___";
+            sb.DrawString(font, codewright, new Vector2(200, 300), Color.Blue);
         }        
         public Lock(Texture2D texture, Color colour, Rectangle bounds,Texture2D texture2,Random r)
         {
@@ -72,6 +120,7 @@ namespace Finaly_of_mine
             _locknum[0] = r.Next(10);
             _locknum[1] = r.Next(10);
             _locknum[2]= r.Next(10);
+            _code =Locknum[0].ToString()+Locknum[1]+Locknum[2];
         }
     }
 }

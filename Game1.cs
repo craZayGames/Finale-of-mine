@@ -95,7 +95,7 @@ namespace Finaly_of_mine
                     player.Move(graph,Kstate);
                     if (player.bounds.Contains(mouseState.Position))
                     {                        
-                        locked.locked(player.TheRoom, mouseState, Kstate);
+                        locked.locked(player.TheRoom, mouseState);
                         locked.thelock(b);                          
                         
                     }                    
@@ -122,7 +122,7 @@ namespace Finaly_of_mine
             spriBat.Begin();
             if(screen == Screen.Intro)
             {                
-                spriBat.DrawString(font, "Left click to continue, Right for intrutions don't release", vect,Color.Blue);
+                spriBat.DrawString(font, "Left click to continue, Right for instructions (don't release)", vect,Color.Blue);
             }           
             else if(screen==Screen.Game)
             {                
@@ -147,7 +147,7 @@ namespace Finaly_of_mine
                 }
                 else if(levels == Levels.Wait)
                 {
-                    spriBat.DrawString(font,"AD to turn, left click to enternumber, release right",vect,Color.Blue);
+                    spriBat.DrawString(font,"A or D to turn the box, left click to enter number, release right",vect,Color.Blue);
                 }
                 else spriBat.DrawString(font,"hello",vect,Color.Blue);
             }
