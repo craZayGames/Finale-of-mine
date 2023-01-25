@@ -17,7 +17,7 @@ namespace Finaly_of_mine
         private Rectangle _bounds;        
         private Vector2 _speed;
         private Point _position;
-        public enum Room { Start,Left,Right,End}
+        public enum Room { Start,Left,End,Right}
         private Room _room;
         public Player(Vector2 speed)
         {                             
@@ -38,30 +38,24 @@ namespace Finaly_of_mine
             get { return _speed; }
         }                    
         public void Move(GraphicsDeviceManager graphic,KeyboardState kstate)
-        {
-            KeyboardState oldstate = kstate;
-            kstate=Keyboard.GetState();
-            if(oldstate != kstate)
-                if (kstate.IsKeyDown(Keys.A) && (_room == Room.Start || _room == Room.Left || _room == Room.Right || _room == Room.End))
-                {
-                if (_room == Room.Start)
+        {            
+            kstate=Keyboard.GetState();            
+                if (kstate.IsKeyDown(Keys.A) && _room == Room.Start )                               
                     _room = Room.Left;
-                else if (_room == Room.Left)
+                else if (kstate.IsKeyDown(Keys.A) && _room == Room.Left)
                     _room = Room.End;
-                else if (_room == Room.End)
+                else if (kstate.IsKeyDown(Keys.A) && _room == Room.End)
                     _room = Room.Right;
-                else _room = Room.Start;
-            }
-            else if (kstate.IsKeyDown(Keys.D) && (_room == Room.Start || _room == Room.Left || _room == Room.Right || _room == Room.End))
-            {
-                if (_room == Room.Start)
+                else if(kstate.IsKeyDown(Keys.A) &&_room==Room.Right) 
+                    _room = Room.Start;            
+                else if (kstate.IsKeyDown(Keys.D) && _room == Room.Start)            
                     _room = Room.Right;
-                else if (_room == Room.Left)
+                else if (kstate.IsKeyDown(Keys.D)&&_room == Room.Left)
                     _room = Room.Start;
-                else if (_room == Room.End)
+                else if (kstate.IsKeyDown(Keys.D) && _room == Room.End)
                     _room = Room.Left;
                 else _room= Room.End;
-            }            
+                      
         }
         public int Click(MouseState mouse)
         {
