@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace Finaly_of_mine
+namespace Finale_of_mine
 {
     class Lock
     {        
@@ -48,7 +48,7 @@ namespace Finaly_of_mine
             if (room == Player.Room.Start )
             {
                 Rectangle[] rect=new Rectangle[10];
-                for(int x=0;x<=100;x+=50)
+                for(int x=0;x<=150;x+=50)
                     for(int y=0; y<=350;y+=50)                    
                         for(int i=0;i<10;i++)
                         { 
@@ -104,8 +104,10 @@ namespace Finaly_of_mine
                     sb.DrawString(font, i.ToString(), _vector, Color.Black);
                     i++;
                 }
-            sb.Draw(_texture2,new Rectangle(50,350,50,50),Color.LightGray);
-            sb.DrawString(font, "0", new Vector2(68,355), Color.Black);
+            sb.Draw(_texture2,new Rectangle(0,350,50,50),Color.LightGray);
+            sb.DrawString(font, "0", new Vector2(18,355), Color.Black);
+            sb.Draw(_texture2,new Rectangle(50,350,100,50),Color.LightGray);
+            sb.DrawString(font, "Enter",new Vector2(68,355),Color.Black);
             sb.Draw(Texture, Bounds, Colour);
             if (codewright == null)
                 codewright = "___";

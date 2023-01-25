@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Color = Microsoft.Xna.Framework.Color;
 using Point = Microsoft.Xna.Framework.Point;
 using Rectangle = Microsoft.Xna.Framework.Rectangle;
-namespace Finaly_of_mine
+namespace Finale_of_mine
 {
     class Player
     {       
@@ -40,21 +40,16 @@ namespace Finaly_of_mine
         public void Move(GraphicsDeviceManager graphic,KeyboardState kstate)
         {            
             kstate=Keyboard.GetState();            
-                if (kstate.IsKeyDown(Keys.A) && _room == Room.Start )                               
+                if (kstate.IsKeyDown(Keys.A) && _room != Room.Left )                               
                     _room = Room.Left;
-                else if (kstate.IsKeyDown(Keys.A) && _room == Room.Left)
+                if (kstate.IsKeyDown(Keys.S) && _room != Room.End)
                     _room = Room.End;
-                else if (kstate.IsKeyDown(Keys.A) && _room == Room.End)
+                if (kstate.IsKeyDown(Keys.D) && _room != Room.Right)
                     _room = Room.Right;
-                else if(kstate.IsKeyDown(Keys.A) &&_room==Room.Right) 
+                if(kstate.IsKeyDown(Keys.W) &&_room!=Room.Start) 
                     _room = Room.Start;            
-                else if (kstate.IsKeyDown(Keys.D) && _room == Room.Start)            
-                    _room = Room.Right;
-                else if (kstate.IsKeyDown(Keys.D)&&_room == Room.Left)
-                    _room = Room.Start;
-                else if (kstate.IsKeyDown(Keys.D) && _room == Room.End)
-                    _room = Room.Left;
-                else _room= Room.End;
+                
+
                       
         }
         public int Click(MouseState mouse)

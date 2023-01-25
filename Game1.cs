@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Text;
-namespace Finaly_of_mine
+namespace Finale_of_mine
 {    
     public class Game1 : Game
     {        
@@ -11,11 +11,11 @@ namespace Finaly_of_mine
         private SpriteBatch spriBat;
         Screen screen;
         MouseState mouseState;        
-        SpriteFont font;
+        SpriteFont font,titleFont;
         Player player;
         Gold gold;
         Texture2D boxText,lockText,whiteText,goldText;        
-        Vector2 gravite,vect;
+        Vector2 vect;
         Box box;
         Lock locked;
         Player.Room room;
@@ -43,8 +43,7 @@ namespace Finaly_of_mine
         {
             color = new Color(152, 121, 86,255);
             // TODO: Add your initialization logic here
-            screen=Screen.Intro;                          
-            gravite = new Vector2(0, -100);            
+            screen=Screen.Intro;                        
             levels = Levels.Zero;
             vect = new Vector2(10, 200);
             base.Initialize();
@@ -61,9 +60,10 @@ namespace Finaly_of_mine
             lockText = Content.Load<Texture2D>("3dCl");
             whiteText = Content.Load<Texture2D>("white");
             goldText = Content.Load<Texture2D>("Binka");
+            titleFont = Content.Load<SpriteFont>("Tital");
             // TODO: use this.Content to load your game content here
         }
-        bool b;
+        bool b=false;
         protected override void Update(GameTime gameTime)
         {            
             mouseState = Mouse.GetState();
@@ -116,13 +116,15 @@ namespace Finaly_of_mine
             base.Update(gameTime);
         }
         protected override void Draw(GameTime gameTime)
-        {             
+        {
+            string s = "Combo Breaker";
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // TODO: Add your drawing code here
             spriBat.Begin();
             if(screen == Screen.Intro)
             {                
                 spriBat.DrawString(font, "Left click to continue, Right for instructions (don't release)", vect,Color.Blue);
+                spriBat.DrawString(titleFont, s, new Vector2(10, 20), Color.Black);
             }           
             else if(screen==Screen.Game)
             {                
@@ -135,10 +137,20 @@ namespace Finaly_of_mine
                     if (room != Player.Room.Start)
                     {
                         if (room == Player.Room.Left)
+                        {
+                            GraphicsDevice.Clear(Color.Green);
                             spriBat.DrawString(font, t[0].ToString(), nect, color);
+                        }
                         else if (room == Player.Room.End)
-                            spriBat.DrawString(font, t[1].ToString(),nect,color);
-                        else spriBat.DrawString(font, t[2].ToString(), nect, color);
+                        {
+                            GraphicsDevice.Clear(Color.Red);
+                            spriBat.DrawString(font, t[1].ToString(), nect, color);
+                        }
+                        else 
+                        { 
+                            GraphicsDevice.Clear(Color.White);
+                            spriBat.DrawString(font, t[2].ToString(), nect, color);
+                        }
                     }
                     else if (room == Player.Room.Start)
                         locked.Draw(spriBat, font);
@@ -147,7 +159,8 @@ namespace Finaly_of_mine
                 }
                 else if(levels == Levels.Wait)
                 {
-                    spriBat.DrawString(font,"A or D to turn the box, left click to enter number, release right",vect,Color.Blue);
+                    spriBat.DrawString(font,"W front, A left, D right, S back, left click to enter number",vect,Color.Blue);
+                    
                 }
                 else spriBat.DrawString(font,"hello",vect,Color.Blue);
             }
