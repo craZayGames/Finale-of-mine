@@ -60,7 +60,7 @@ namespace Finale_of_mine
             lockText = Content.Load<Texture2D>("3dCl");
             whiteText = Content.Load<Texture2D>("white");
             goldText = Content.Load<Texture2D>("Binka");
-            titleFont = Content.Load<SpriteFont>("Tital");
+            //titleFont = Content.Load<SpriteFont>("Tital");
             // TODO: use this.Content to load your game content here
         }
         bool b=false;
@@ -124,7 +124,7 @@ namespace Finale_of_mine
             if(screen == Screen.Intro)
             {                
                 spriBat.DrawString(font, "Left click to continue, Right for instructions (don't release)", vect,Color.Blue);
-                spriBat.DrawString(titleFont, s, new Vector2(10, 20), Color.Black);
+                //spriBat.DrawString(titleFont, s, new Vector2(10, 20), Color.Black);
             }           
             else if(screen==Screen.Game)
             {                
